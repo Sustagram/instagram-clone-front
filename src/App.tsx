@@ -1,26 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import axios from "axios";
+import "./App.css";
+import Buttons from "./Components/Buttons";
 
-function App() {
+const App: React.FC = () => {
+  const onClickGetButton = () => {
+    axios({
+      method: "get",
+      url: "http://127.0.0.1:8000/api/test",
+    }).then((responseType) => {
+      console.log("GET!");
+    });
+  };
+
+  const onClickPostButton = () => {
+    axios
+      .post("https://127.0.0.1:8000/api/test", {
+        /* asd */
+      })
+      .then((responseType) => {
+        console.log("POST!");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Buttons
+        onClickGetButton={onClickGetButton}
+        onClickPostButton={onClickPostButton}
+      />
     </div>
   );
-}
+};
 
 export default App;
