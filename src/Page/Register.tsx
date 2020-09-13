@@ -1,4 +1,3 @@
-import { NONAME } from "dns";
 import React from "react";
 import styled, { css } from "styled-components";
 
@@ -23,13 +22,13 @@ const RegHeader = styled.header`
 `;
 
 const Title = styled.h1`
-  font-size: ${(props) => (props.className === "title" ? "2rem" : "1rem")};
-  ${(props) =>
-    props.className === "sub-title" &&
-    css`
-      color: rgba(180, 180, 180, 0.8);
-      font-weight: 800;
-    `};
+  font-size: 2rem;
+`;
+
+const SubTitle = styled.h1`
+  font-size: 1rem;
+  color: rgba(180, 180, 180, 0.8);
+  font-weight: 800;
 `;
 
 const Line = styled.div`
@@ -81,13 +80,24 @@ const TipLink = styled.a`
   font-weight: bold;
 `;
 
+const AcountWhether = styled.p`
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+`;
+
+const LoginLink = styled.a`
+  text-decoration: none;
+  color: #0095f6;
+`;
+
 const Register: React.FC = () => {
   return (
     <>
       <Container>
         <RegHeader>
-          <Title className="title">Sustagram</Title>
-          <Title className="sub-title">당신의 사진을 간직해드려요.</Title>
+          <Title>Sustagram</Title>
+          <SubTitle>당신의 사진을 간직해드려요.</SubTitle>
           <Line />
         </RegHeader>
 
@@ -128,7 +138,7 @@ const Register: React.FC = () => {
             required
           />
 
-          <SubmitButton>가입</SubmitButton>
+          <SubmitButton type="button">가입</SubmitButton>
         </Form>
         <Tip>
           가입하면 Sustagram의 <TipLink href="#">약관</TipLink>,{" "}
@@ -137,21 +147,9 @@ const Register: React.FC = () => {
         </Tip>
       </Container>
       <Container>
-        <p
-          style={{
-            margin: 0,
-            padding: 0,
-            fontSize: "14px",
-          }}
-        >
-          계정이 있으신가요?{" "}
-          <a href="#" style={{
-            textDecoration: 'none',
-            color: '#0095f6'
-          }}>
-            로그인
-          </a>
-        </p>
+        <AcountWhether>
+          계정이 있으신가요? <LoginLink href="#">로그인</LoginLink>
+        </AcountWhether>
       </Container>
     </>
   );
