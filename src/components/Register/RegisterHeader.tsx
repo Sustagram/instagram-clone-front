@@ -1,19 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
+import RegisterTitle from '../../atomics/Typography/RegisterTitle';
+import RegisterSubTitle from '../../atomics/Typography/RegisterSubTitle';
 
-const RegHeader = styled.header`
+const Container = styled.header`
   padding: 10px;
   margin-bottom: 10px;
-`;
-
-const Title = styled.h1`
-  font-size: 2rem;
-`;
-
-const SubTitle = styled.h1`
-  font-size: 1rem;
-  color: rgba(180, 180, 180, 0.8);
-  font-weight: 800;
 `;
 
 const Line = styled.div`
@@ -25,11 +17,11 @@ const Line = styled.div`
 
 const RegisterHeader: React.FC = () => {
   return (
-    <RegHeader>
-      <Title>Sustagram</Title>
-      <SubTitle>당신의 사진을 간직해드려요.</SubTitle>
+    <Container>
+      <RegisterTitle>Sustagram</RegisterTitle>
+      <RegisterSubTitle>당신의 사진을 간직해드려요.</RegisterSubTitle>
       <Line />
-    </RegHeader>
+    </Container>
   );
 };
 
