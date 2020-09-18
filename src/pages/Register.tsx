@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import styled from 'styled-components';
 import RegisterHeader from '../components/Register/RegisterHeader';
 import RegisterBox from '../components/Register/RegisterBox';
@@ -53,6 +54,8 @@ const Register: React.FC = () => {
     passwordConfirm: ''
   });
 
+  const { email, realName, username, password, passwordConfirm } = input;
+
   const onInputChangeHandle = (
     e: React.ChangeEvent<HTMLInputElement>,
     type: keyof RegisterState
@@ -65,6 +68,21 @@ const Register: React.FC = () => {
         [type]: e.target.value
       };
     });
+  };
+
+  const onClickRegisterButton = async () => {
+    const data = {
+      email,
+      realName,
+      username,
+      password
+    };
+
+    try {
+      const user = await axios.post('https://localhost/api/register', data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -109,7 +127,9 @@ const Register: React.FC = () => {
             required
           />
 
-          <SubmitButton type="button">가입</SubmitButton>
+          <SubmitButton type="button" onClick={onClickRegisterButton}>
+            가입
+          </SubmitButton>
         </Form>
 
         <RegisterTip />
