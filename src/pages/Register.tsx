@@ -79,7 +79,7 @@ const Register: React.FC = () => {
     };
 
     try {
-      const user = await axios.post('https://localhost/api/userData', data);
+      const user = await axios.post('https://localhost/api/register', data);
     } catch (error) {
       console.log(error);
     }
