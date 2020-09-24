@@ -6,35 +6,9 @@ import RegisterBox from '../components/Register/RegisterBox';
 import RegisterFooter from '../components/Register/RegisterFooter';
 import RegisterTip from '../components/Register/RegisterTip';
 
-const Form = styled.form`
   display: flex;
   flex-flow: column;
   align-items: center;
-`;
-
-const Input = styled.input`
-  padding: 10px;
-  width: 70%;
-  margin-bottom: 8px;
-  border: 1px solid rgb(222, 222, 222);
-  border-radius: 3px;
-  background: #fafafa;
-`;
-
-const SubmitButton = styled.button`
-  background: #0095f6;
-  color: #ffffff;
-  font-weight: bold;
-  font-size: 1rem;
-  border: none;
-  border-radius: 5px;
-  padding: 10px;
-  margin-top: 10px;
-  width: 77%;
-
-  &:hover {
-    cursor: pointer;
-  }
 `;
 
 interface RegisterState {
@@ -90,7 +64,6 @@ const Register: React.FC = () => {
       <RegisterBox>
         <RegisterHeader />
 
-        <Form action="">
           <Input
             type="email"
             placeholder="이메일 주소"
@@ -130,7 +103,6 @@ const Register: React.FC = () => {
           <SubmitButton type="button" onClick={onClickRegisterButton}>
             가입
           </SubmitButton>
-        </Form>
 
         <RegisterTip />
       </RegisterBox>
