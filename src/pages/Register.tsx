@@ -48,6 +48,11 @@ const Register: React.FC = () => {
   };
 
   const onClickRegisterButton = async () => {
+    if (password !== passwordConfirm) {
+      alert('비밀번호를 올바르게 입력해주세요');
+      return;
+    }
+
     const data = {
       email,
       realName,
