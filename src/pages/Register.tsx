@@ -5,7 +5,10 @@ import RegisterHeader from '../components/Register/RegisterHeader';
 import RegisterBox from '../components/Register/RegisterBox';
 import RegisterFooter from '../components/Register/RegisterFooter';
 import RegisterTip from '../components/Register/RegisterTip';
+import Input from '../atomics/Form/Input';
+import SubmitButton from '../atomics/Button/SubmitButton';
 
+const StyledForm = styled.form`
   display: flex;
   flex-flow: column;
   align-items: center;
@@ -64,6 +67,7 @@ const Register: React.FC = () => {
       <RegisterBox>
         <RegisterHeader />
 
+        <StyledForm action="">
           <Input
             type="email"
             placeholder="이메일 주소"
@@ -103,6 +107,7 @@ const Register: React.FC = () => {
           <SubmitButton type="button" onClick={onClickRegisterButton}>
             가입
           </SubmitButton>
+        </StyledForm>
 
         <RegisterTip />
       </RegisterBox>
