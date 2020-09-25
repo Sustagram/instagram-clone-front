@@ -55,13 +55,18 @@ const Register: React.FC = () => {
 
     const data = {
       email,
-      realName,
+      realname: realName,
       username,
       password
     };
 
     try {
-      const user = await axios.post('https://localhost/api/register', data);
+      const user = await axios.post('http://localhost:8000/api/register/', data, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      console.log(user.data);
     } catch (error) {
       console.log(error);
     }

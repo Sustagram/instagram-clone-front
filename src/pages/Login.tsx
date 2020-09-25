@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
 import LoginBox from '../components/Login/LoginBox';
 import LoginHeader from '../components/Login/LoginHeader';
 import LoginFooter from '../components/Login/LoginFooter';
-import styled from 'styled-components';
 import Input from '../atomics/Form/Input';
 import SubmitButton from '../atomics/Button/SubmitButton';
 
@@ -18,24 +18,30 @@ const Login: React.FC = () => {
   const [password, setPassword] = useState('');
 
   const onEmailInputChange = (e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value);
-  const onPasswordInputChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+  const onPasswordInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
+  };
 
   const userLogin = async () => {
     if (email.trim() === '' || password.trim() === '') {
       console.log('ERROR : 이메일 또는 비밀번호 공백');
       return;
     }
-    console.log(email);
-    console.log(password);
+    const data = {
+      email,
+      password
+    };
     try {
-      const user = await axios.get('https://localhost/api/login');
-      console.log(user);
+      const user = await axios.post('http://localhost:8000/api/login/', data, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      console.log(user.data);
     } catch (error) {
       console.log(error);
     }
   };
-
   return (
     <>
       <LoginBox>
@@ -64,5 +70,4 @@ const Login: React.FC = () => {
     </>
   );
 };
-
 export default Login;
