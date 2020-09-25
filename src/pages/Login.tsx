@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import styled from 'styled-components';
 import LoginBox from '../components/Login/LoginBox';
 import LoginHeader from '../components/Login/LoginHeader';
 import LoginFooter from '../components/Login/LoginFooter';
 import Input from '../atomics/Form/Input';
 import SubmitButton from '../atomics/Button/SubmitButton';
+import Api from '../api';
 
 const StyledForm = styled.form`
   display: flex;
@@ -32,11 +32,7 @@ const Login: React.FC = () => {
       password
     };
     try {
-      const user = await axios.post('http://localhost:8000/api/login/', data, {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
+      const user = await Api.post('http://localhost:8000/api/login/', data);
       console.log(user.data);
     } catch (error) {
       console.log(error);

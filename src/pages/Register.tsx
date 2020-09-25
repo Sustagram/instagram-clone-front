@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import styled from 'styled-components';
 import RegisterHeader from '../components/Register/RegisterHeader';
 import RegisterBox from '../components/Register/RegisterBox';
@@ -7,6 +6,7 @@ import RegisterFooter from '../components/Register/RegisterFooter';
 import RegisterTip from '../components/Register/RegisterTip';
 import Input from '../atomics/Form/Input';
 import SubmitButton from '../atomics/Button/SubmitButton';
+import Api from '../api';
 
 const StyledForm = styled.form`
   display: flex;
@@ -61,11 +61,7 @@ const Register: React.FC = () => {
     };
 
     try {
-      const user = await axios.post('http://localhost:8000/api/register/', data, {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
+      const user = await Api.post('http://localhost:8000/api/register/', data);
       console.log(user.data);
     } catch (error) {
       console.log(error);
