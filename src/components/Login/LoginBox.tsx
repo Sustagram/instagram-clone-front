@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
-const RegisterBox = styled.div`
+const LoginBox = styled.div`
   background-color: #fff;
+  box-sizing: border-box;
   width: 350px;
   margin: 0 auto;
   border: 1px solid rgb(222, 222, 222);
@@ -18,4 +19,4 @@ const RegisterBox = styled.div`
   }
 `;
 
-export default RegisterBox;
+export default LoginBox;
