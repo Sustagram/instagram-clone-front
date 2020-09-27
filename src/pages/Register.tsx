@@ -16,7 +16,7 @@ const StyledForm = styled.form`
 
 interface RegisterState {
   readonly email: string;
-  readonly realName: string;
+  readonly realname: string;
   readonly username: string;
   readonly password: string;
   readonly passwordConfirm: string;
@@ -25,13 +25,13 @@ interface RegisterState {
 const Register: React.FC = () => {
   const [input, setInput] = useState<RegisterState>({
     email: '',
-    realName: '',
+    realname: '',
     username: '',
     password: '',
     passwordConfirm: ''
   });
 
-  const { email, realName, username, password, passwordConfirm } = input;
+  const { email, realname, username, password, passwordConfirm } = input;
 
   const onInputChangeHandle = (
     e: React.ChangeEvent<HTMLInputElement>,
@@ -53,16 +53,13 @@ const Register: React.FC = () => {
       return;
     }
 
-    const data = {
-      email,
-      realname: realName,
-      username,
-      password
-    };
-
     try {
-      const user = await Api.post('http://localhost:8000/api/register/', data);
-      console.log(user.data);
+      const user = await Api.post('/api/register/', {
+        email,
+        realname,
+        username,
+        password
+      });
     } catch (error) {
       console.log(error);
     }
@@ -84,8 +81,8 @@ const Register: React.FC = () => {
           <Input
             type="text"
             placeholder="성명"
-            value={input.realName}
-            onChange={(e) => onInputChangeHandle(e, 'realName')}
+            value={input.realname}
+            onChange={(e) => onInputChangeHandle(e, 'realname')}
             required
           />
           <Input
