@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Test from './test.png';
 
 const Card = styled.article`
   box-sizing: border-box;
