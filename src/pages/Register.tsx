@@ -8,7 +8,7 @@ import Input from '../atomics/Form/Input';
 import SubmitButton from '../atomics/Button/SubmitButton';
 import Api from '../api';
 
-const StyledForm = styled.form`
+const StyledForm = styled.div`
   display: flex;
   flex-flow: column;
   align-items: center;
@@ -48,6 +48,23 @@ const Register: React.FC = () => {
   };
 
   const onClickRegisterButton = async () => {
+    if (
+      !email.trim()
+      || !realname.trim()
+      || !username.trim()
+      || !password.trim()
+      || !passwordConfirm.trim()
+    ) {
+      alert('비어있는 칸이 있습니다.');
+      return;
+    }
+
+    const regEmail = /^([0-9a-zA-Z_.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
+    if (!regEmail.test(email)) {
+      alert('올바른 이메일이 아닙니다.');
+      return;
+    }
+
     if (password !== passwordConfirm) {
       alert('비밀번호를 올바르게 입력해주세요');
       return;
@@ -70,7 +87,7 @@ const Register: React.FC = () => {
       <RegisterBox>
         <RegisterHeader />
 
-        <StyledForm action="">
+        <StyledForm>
           <Input
             type="email"
             placeholder="이메일 주소"
