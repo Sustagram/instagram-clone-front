@@ -6,8 +6,9 @@ import LoginFooter from '../components/Login/LoginFooter';
 import Input from '../atomics/Form/Input';
 import SubmitButton from '../atomics/Button/SubmitButton';
 import Api from '../api';
+import TokenUtil from '../api/token';
 
-const StyledForm = styled.form`
+const StyledForm = styled.div`
   display: flex;
   flex-flow: column;
   align-items: center;
@@ -22,22 +23,32 @@ const Login: React.FC = () => {
     setPassword(e.target.value);
   };
 
-  const userLogin = async () => {
-    if (email.trim() === '' || password.trim() === '') {
-      console.log('ERROR : 이메일 또는 비밀번호 공백');
+  const onClickLoginButton = async () => {
+    if (!email.trim() || !password.trim()) {
+      alert('비어있는 칸이 있습니다.');
       return;
     }
-    const data = {
-      email,
-      password
-    };
+
+    const regEmail = /^([0-9a-zA-Z_.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
+    if (!regEmail.test(email)) {
+      alert('올바른 이메일이 아닙니다.');
+      return;
+    }
+
     try {
-      const user = await Api.post('http://localhost:8000/api/login/', data);
-      console.log(user.data);
+      const user = await Api.post('/api/login/', {
+        email,
+        password
+      });
+
+      const { token } = user.data.data;
+
+      TokenUtil.set(token);
     } catch (error) {
       console.log(error);
     }
   };
+
   return (
     <>
       <LoginBox>
@@ -59,7 +70,7 @@ const Login: React.FC = () => {
             required
           />
 
-          <SubmitButton onClick={userLogin}>로그인</SubmitButton>
+          <SubmitButton onClick={onClickLoginButton}>로그인</SubmitButton>
         </StyledForm>
       </LoginBox>
       <LoginFooter />
