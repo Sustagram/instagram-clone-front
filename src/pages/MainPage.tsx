@@ -92,7 +92,7 @@ const AttributeWrap = styled.div`
   justify-content: center;
   padding: 8px;
   &:last-child {
-    margin-left:auto;
+    margin-left: auto;
   }
 `;
 
@@ -101,6 +101,84 @@ const Attribute = styled.a`
   height: 24px;
   text-align: center;
   text-decoration: none;
+  line-height: 24px;
+`;
+
+const LikeCount = styled.section`
+  padding: 0 16px;
+  margin-bottom: 8px;
+  & * {
+    font-size: 14px;
+    text-decoration: none;
+    color: #262626;
+    font-weight: 600;
+  }
+`;
+
+const Preview = styled.div`
+  padding: 0 16px;
+  font-size: 14px;
+`;
+
+const PostContent = styled.span`
+  font-size: 14px;
+  color: #262626;
+  & .writter {
+    font-weight: bold;
+  }
+  & .text {
+    overflow-wrap: break-word;
+  }
+`;
+
+const RepleBox = styled.div``;
+
+const RepleAllButton = styled.div`
+  margin-bottom: 4px;
+  & * {
+    text-decoration: none;
+    color: rgb(142, 142, 142);
+    line-height: inherit;
+  }
+`;
+
+const RepleContent = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  color: #262626;
+  & .writter {
+    font-weight: bold;
+  }
+  & .text {
+    overflow-wrap: break-word;
+  }
+`;
+
+const TimeTable = styled.div`
+  margin-bottom: 4px;
+  padding-left: 16px;
+  & * {
+    color: rgb(142, 142, 142);
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-size: 10px;
+  }
+`;
+
+const RepleInput = styled.section``;
+
+const TextAria = styled.textarea`
+  font-size: inherit;
+  line-height: 18px;
+  height: 18px;
+  max-height: 80px;
+  outline: none;
+  border: none;
+  resize: none;
+  color: rgb(38,38,38);
 `;
 
 const MainPage: React.FC = () => {
@@ -135,44 +213,66 @@ const MainPage: React.FC = () => {
 
               <PostFooter>
                 <AttributeBox>
-                  <AttributeWrap id="like"><Attribute href="#">하트</Attribute></AttributeWrap>
-                  <AttributeWrap id="coment"><Attribute href="#">댓글</Attribute></AttributeWrap>
-                  <AttributeWrap id="share"><Attribute href="#">공유</Attribute></AttributeWrap>
-                  <AttributeWrap id="bookmark"><Attribute href="#">북마</Attribute></AttributeWrap>
+                  <AttributeWrap id="like">
+                    <Attribute href="#">하트</Attribute>
+                  </AttributeWrap>
+                  <AttributeWrap id="coment">
+                    <Attribute href="#">댓글</Attribute>
+                  </AttributeWrap>
+                  <AttributeWrap id="share">
+                    <Attribute href="#">공유</Attribute>
+                  </AttributeWrap>
+                  <AttributeWrap id="bookmark">
+                    <Attribute href="#">북마</Attribute>
+                  </AttributeWrap>
                 </AttributeBox>
-                <section className="like_count">
+                <LikeCount>
                   <a href="#">
                     좋아요 <span>100</span>개
                   </a>
-                </section>
-                <div className="miribogi">
-                  <div className="post_content">
-                    <span className="writer">arkc</span>
-                    <span className="text">가나다라마바사</span>
-                  </div>
-                  <div className="reple">
-                    <div className="reple_all_button">댓글 100개 미리보기</div>
-                    <div className="reple_conetent">
-                      <span className="writer">abcd</span>
+                </LikeCount>
+                <Preview>
+                  <PostContent>
+                    <span className="writter">arkc</span>
+                    &nbsp;
+                    <span className="text">
+                      가나다라마asdasdddddddddddddddddddddddddddddddddddddddddddddddddddddddddd바사
+                    </span>
+                  </PostContent>
+                  <RepleBox>
+                    <RepleAllButton>
+                      <a href="#">
+                        댓글 <span>100</span>개 미리보기
+                      </a>
+                    </RepleAllButton>
+                    <RepleContent>
+                      <span className="writter">abcd</span>
+                      &nbsp;
                       <span className="text">치즈</span>
-                    </div>
-                    <div className="reple_conetent">
-                      <span className="writer">qpeo</span>
+                    </RepleContent>
+                    <RepleContent>
+                      <span className="writter">qpeo</span>
+                      &nbsp;
                       <span className="text">우효</span>
-                    </div>
-                  </div>
-                </div>
-                <div className="time_table">
+                    </RepleContent>
+                  </RepleBox>
+                </Preview>
+                <TimeTable>
                   <a href="#">3시간전</a>
-                </div>
-                <section className="reple_input">
+                </TimeTable>
+                <RepleInput>
                   <div className="form">
-                    <textarea></textarea>
+                    <TextAria
+                      aria-label="댓글 달기..."
+                      placeholder="댓글 달기..."
+                      autoComplete="off"
+                      autoCorrect="off"
+                    ></TextAria>
                     <button className="upload" type="submit">
                       게시
                     </button>
                   </div>
-                </section>
+                </RepleInput>
               </PostFooter>
             </Card>
           </div>
