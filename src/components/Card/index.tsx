@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import Test from '../../pages/test.png';
-import AttributeContainer from '../AttributeContainer';
+import AttributeContainer from '../Attribute';
 import LikeCount from '../LikeCount';
 
-const CardBox = styled.article`
+const CardStyle = styled.article`
   box-sizing: border-box;
   position: relative;
   margin: 0 auto;
@@ -74,38 +74,6 @@ const ImageItem = styled.img`
 
 const PostFooter = styled.div`
   width: 100%;
-`;
-
-const AttributeBox = styled.section`
-  padding-left: 1rem;
-  padding-right: 1rem;
-  display: flex;
-  flex-direction: row;
-`;
-
-const AttributeWrap = styled.div`
-  display: flex;
-  margin-left: -8px;
-  width: 40px;
-  height: 40px;
-  font-size: 8px;
-  box-sizing: border-box;
-  align-items: center;
-  justify-content: center;
-  padding: 8px;
-  &:last-child {
-    margin-left: auto;
-    margin-right: -8px;
-  }
-`;
-
-const Attribute = styled.a`
-  width: 24px;
-  height: 24px;
-  text-align: center;
-  text-decoration: none;
-  color: #262626;
-  line-height: 24px;
 `;
 
 const Preview = styled.div`
@@ -223,7 +191,7 @@ const Card: React.FC = () => {
               paddingTop: '30px'
             }}
           >
-            <CardBox>
+            <CardStyle>
               <Header>
                 <Profile>
                   <a href="">1</a>
@@ -301,7 +269,7 @@ const Card: React.FC = () => {
                   </RepleForm>
                 </RepleInput>
               </PostFooter>
-            </CardBox>
+            </CardStyle>
           </div>
         </div>
       </section>

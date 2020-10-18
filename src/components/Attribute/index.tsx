@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import Like from '../atomics/Attributes/Like';
-import Comment from '../atomics/Attributes/Comment';
-import Share from '../atomics/Attributes/Share';
-import Bookmark from '../atomics/Attributes/Bookmark';
+import Like from '../../atomics/Attributes/Like';
+import Comment from '../../atomics/Attributes/Comment';
+import Share from '../../atomics/Attributes/Share';
+import Bookmark from '../../atomics/Attributes/Bookmark';
 
 const AttributeBoxStyle = styled.section`
   padding-left: 1rem;
