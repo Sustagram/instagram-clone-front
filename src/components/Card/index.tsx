@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Test from '../../pages/test.png';
 import AttributeContainer from '../AttributeContainer';
+import LikeCount from '../LikeCount';
 
 const CardBox = styled.article`
   box-sizing: border-box;
@@ -105,17 +106,6 @@ const Attribute = styled.a`
   text-decoration: none;
   color: #262626;
   line-height: 24px;
-`;
-
-const LikeCount = styled.section`
-  padding: 0 16px;
-  margin-bottom: 8px;
-  & * {
-    font-size: 14px;
-    text-decoration: none;
-    color: #262626;
-    font-weight: 600;
-  }
 `;
 
 const Preview = styled.div`
@@ -266,11 +256,8 @@ const Card: React.FC = () => {
               <PostFooter>
                 <AttributeContainer />
 
-                <LikeCount>
-                  <a href="#">
-                    좋아요 <span>100</span>개
-                  </a>
-                </LikeCount>
+                <LikeCount count={123} />
+
                 <Preview>
                   <PostContent>
                     <span className="writter">arkc</span>
