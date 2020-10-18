@@ -1,15 +1,12 @@
 import React from 'react';
-import styled from 'styled-components';
-import Card from '../components/Card/index';
-
-
+import Post from '../components/Post';
 
 const MainPage: React.FC = () => {
   return (
     <>
-      <Card />
-      <Card />
-      <Card />
+      <Post />
+      <Post />
+      <Post />
     </>
   );
 };
