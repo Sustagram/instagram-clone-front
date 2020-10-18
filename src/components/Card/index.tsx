@@ -5,6 +5,7 @@ const CardStyle = styled.article`
   box-sizing: border-box;
   position: relative;
   margin: 0 auto;
+  margin-bottom: 4rem;
   background-color: #fff;
   @media only screen and (min-width: 640px) {
     width: 602px;
@@ -14,23 +15,7 @@ const CardStyle = styled.article`
 `;
 
 const Card: React.FC = ({ children }) => {
-  return (
-    <div id="main">
-      <section id="content">
-        <div className="post_and_story">
-          <div id="story" />
-          <div
-            id="post_list"
-            style={{
-              paddingTop: '30px'
-            }}
-          >
-            <CardStyle>{children}</CardStyle>
-          </div>
-        </div>
-      </section>
-    </div>
-  );
+  return <CardStyle>{children}</CardStyle>;
 };
 
 export default Card;
