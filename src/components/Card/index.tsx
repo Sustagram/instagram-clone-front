@@ -3,9 +3,9 @@ import styled from 'styled-components';
 
 const CardStyle = styled.article`
   box-sizing: border-box;
+
   position: relative;
-  margin: 0 auto;
-  margin-bottom: 4rem;
+  margin: 0 auto 4rem auto;
   background-color: #fff;
   @media only screen and (min-width: 640px) {
     width: 602px;
