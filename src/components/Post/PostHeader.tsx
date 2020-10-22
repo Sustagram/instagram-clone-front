@@ -14,11 +14,9 @@ const PostHeaderContainer = styled.header`
 `;
 
 const ProfileImage = styled.div`
-  background-color: powderblue;
   width: 32px;
   height: 32px;
   border-radius: 16px;
-  text-align: center;
 `;
 
 const PosterNameContainer = styled.div`
@@ -26,19 +24,34 @@ const PosterNameContainer = styled.div`
   margin-left: 14px;
 `;
 
+const ImageItem = styled.img`
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  border: 0.5px solid rgb(142, 142, 142);
+  user-select: none;
+`;
+
+const PosterName = styled.a` 
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+`;
+
 interface PostHeaderProps {
   profileImage: string;
   name: string;
 }
 
-const PostHeader: React.FC<PostHeaderProps> = ({ name }) => {
+const PostHeader: React.FC<PostHeaderProps> = ({ profileImage, name }) => {
   return (
     <PostHeaderContainer>
       <ProfileImage>
-        <a href="">1</a>
+        <ImageItem src={profileImage} />
       </ProfileImage>
       <PosterNameContainer>
-        <a href="#">{name}</a>
+        <PosterName>{name}</PosterName>
       </PosterNameContainer>
     </PostHeaderContainer>
   );

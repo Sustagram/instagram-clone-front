@@ -21,7 +21,7 @@ const ImageItem = styled.img`
 const Post: React.FC = () => {
   return (
     <Card>
-      <PostHeader profileImage="temp" name="arkc" />
+      <PostHeader profileImage={Test} name="arkc" />
 
       <OptionButton />
 
