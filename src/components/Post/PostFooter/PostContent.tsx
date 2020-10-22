@@ -6,7 +6,7 @@ const StyledContent = styled.span`
   color: #262626;
 `;
 
-const StyledWritter = styled.span`
+const StyledWriter = styled.span`
   font-weight: bold;
 `;
 
@@ -21,7 +21,7 @@ interface PostContentProps {
 const PostContent: React.FC<PostContentProps> = ({ writer, children }) => {
   return (
     <StyledContent>
-      <StyledWritter>{writer}</StyledWritter>
+      <StyledWriter>{writer}</StyledWriter>
       &nbsp;
       <StyledText>{children}</StyledText>
     </StyledContent>
