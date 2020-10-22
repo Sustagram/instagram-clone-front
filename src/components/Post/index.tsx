@@ -26,8 +26,8 @@ const Post: React.FC = () => {
       <OptionButton />
 
       <ImageBox>
-        <ImageItem src={Test}></ImageItem>
-        <div className="next_picture_radio"></div>
+        <ImageItem src={Test} />
+        <div className="next_picture_radio" />
       </ImageBox>
 
       <PostFooter />
