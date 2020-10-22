@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import AttributeContainer from '../Attribute';
-import LikeCount from '../LikeCount';
+import AttributeContainer from '../../Attribute';
+import LikeCount from '../../LikeCount';
+import PostContent from './PostContent';
 
 const PostFooterContainer = styled.div`
   width: 100%;
@@ -10,17 +11,6 @@ const PostFooterContainer = styled.div`
 const Preview = styled.div`
   padding: 0 16px;
   font-size: 14px;
-`;
-
-const PostContent = styled.span`
-  font-size: 14px;
-  color: #262626;
-  & .writter {
-    font-weight: bold;
-  }
-  & .text {
-    overflow-wrap: break-word;
-  }
 `;
 
 const RepleBox = styled.div``;
@@ -118,12 +108,8 @@ const PostFooter: React.FC = () => {
       <LikeCount count={123} />
 
       <Preview>
-        <PostContent>
-          <span className="writter">arkc</span>
-          &nbsp;
-          <span className="text">
-            가나다라마asdasdddddddddddddddddddddddddddddddddddddddddddddddddddddddddd바사
-          </span>
+        <PostContent writer="홍길동">
+          테스트 내용. 가나다라마바사아자차카타파하 ABCDEFG 1234
         </PostContent>
 
         <RepleBox>
@@ -158,7 +144,7 @@ const PostFooter: React.FC = () => {
             placeholder="댓글 달기..."
             autoComplete="off"
             autoCorrect="off"
-          ></TextArea>
+          />
           <RepleSubmitBtn className="upload" type="submit">
             게시
           </RepleSubmitBtn>
