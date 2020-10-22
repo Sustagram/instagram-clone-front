@@ -1,5 +1,10 @@
 import React from 'react';
+import styled from 'styled-components';
 import Post from '../components/Post';
+
+const PostList = styled.div`
+  padding-top: 30px;
+`;
 
 const MainPage: React.FC = () => {
   return (
@@ -7,16 +12,11 @@ const MainPage: React.FC = () => {
       <section id="content">
         <div className="post_and_story">
           <div id="story" />
-          <div
-            id="post_list"
-            style={{
-              paddingTop: '30px'
-            }}
-          >
+          <PostList>
             <Post />
             <Post />
             <Post />
-          </div>
+          </PostList>
         </div>
       </section>
     </div>
