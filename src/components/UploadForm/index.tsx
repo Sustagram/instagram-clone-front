@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import TextareaAutosize from 'react-autosize-textarea';
 import Card from '../Card';
 import UploadButton from '../../atomics/Button/UploadButton';
 
@@ -10,14 +11,17 @@ const Container = styled.div`
   margin: 4rem auto 4rem auto;
 `;
 
-const Line = styled.hr`
-  width: 300px;
+const Line = styled.hr<{ gap: string }>`
+  width: 450px;
+  margin: ${(props) => props.gap} auto ${(props) => props.gap} auto;
 `;
 
-const ContentInput = styled.textarea`
+const ContentInput = styled(TextareaAutosize)<{ loading: boolean }>`
+  opacity: ${(props) => (props.loading ? '1' : '0.3')};
+  pointer-events: ${(props) => (props.loading ? 'all' : 'none')};
   padding: 1rem;
   border: none;
-  width: 300px;
+  width: 500px;
   height: 16px;
   line-height: 16px;
   overflow: hidden;
@@ -26,23 +30,41 @@ const ContentInput = styled.textarea`
   outline-width: thin;
 `;
 
-const resize = (obj: any) => {
-  obj.style.height = '1px';
-  obj.style.height = `${12 + obj.scrollHeight}px`;
-};
-
 interface UploadProps {
   isloading: boolean;
 }
 
 const UploadForm: React.FC<UploadProps> = ({ isloading }) => {
+  const [content, setContent] = useState('');
+  const [isContentLoading, setContentLoading] = useState(false);
+
+  const onContentInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setContent(e.target.value);
+  };
+
+  useEffect(() => {
+    if (content) {
+      setContentLoading(true);
+    } else {
+      setContentLoading(false);
+    }
+  }, [content]);
+
   return (
     <Card>
       <Container>
-        <ContentInput id="content-input" placeholder="문구 입력..." />
-        <Line />
+        <ContentInput
+          loading={isloading}
+          id="content-input"
+          placeholder="문구 입력..."
+          rows={3}
+          value={content}
+          onChange={onContentInputChange}
+        />
 
-        <UploadButton loading={isloading}>업로드</UploadButton>
+        <Line gap="1.5rem" />
+
+        <UploadButton loading={isContentLoading}>업로드</UploadButton>
       </Container>
     </Card>
   );
