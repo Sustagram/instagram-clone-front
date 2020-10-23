@@ -23,7 +23,7 @@ const RepleForm = styled.div`
   position: relative;
 `;
 
-const TextArea = styled.textarea`
+const Input = styled.input`
   font-size: inherit;
   line-height: 18px;
   width: 100%;
@@ -52,16 +52,25 @@ const RepleSubmitBtn = styled.button`
 `;
 
 const RepleInput: React.FC = () => {
+  const [reple, setReple] = useState('');
+  const [isInputValueLoding, setLoading] = useState(false);
+
+  const onRepleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setReple(e.target.value);
+  };
+
+  useEffect(() => {
+    if (reple) {
+      setLoading(true);
+    } else {
+      setLoading(false);
+    }
+  }, [reple]);
+
   return (
     <InputContainer>
       <RepleForm>
-        <TextArea
-          aria-label="댓글 달기..."
-          placeholder="댓글 달기..."
-          autoComplete="off"
-          autoCorrect="off"
-        />
-        <RepleSubmitBtn className="upload" type="submit">
+        <Input placeholder="댓글 달기..." onChange={onRepleInputChange} value={reple} />
           게시
         </RepleSubmitBtn>
       </RepleForm>
