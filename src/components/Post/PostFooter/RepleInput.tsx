@@ -1,5 +1,7 @@
 import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import UploadButton from '../../../atomics/Button/UploadButton';
 
 const InputContainer = styled.section`
   border-top: 1.5px solid rgba(222, 222, 222, 0.8);
@@ -35,22 +37,6 @@ const Input = styled.input`
   color: rgb(38, 38, 38);
 `;
 
-const RepleSubmitBtn = styled.button`
-  font-size: 14px;
-  line-height: 18px;
-  box-sizing: border-box;
-  font-weight: 600;
-  text-align: center;
-  color: rgb(0, 149, 246);
-  background: none;
-  border: none;
-  display: inline;
-  padding: 0;
-  margin: 0;
-  position: relative;
-  width: 30px;
-`;
-
 const RepleInput: React.FC = () => {
   const [reple, setReple] = useState('');
   const [isInputValueLoding, setLoading] = useState(false);
@@ -71,8 +57,10 @@ const RepleInput: React.FC = () => {
     <InputContainer>
       <RepleForm>
         <Input placeholder="댓글 달기..." onChange={onRepleInputChange} value={reple} />
+
+        <UploadButton loading={isInputValueLoding} className="upload" type="submit">
           게시
-        </RepleSubmitBtn>
+        </UploadButton>
       </RepleForm>
     </InputContainer>
   );
