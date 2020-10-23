@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Test from '../../pages/test.png';
+import Test from '../../assets/test.png';
 import Card from '../Card';
 import PostHeader from './PostHeader';
 import PostFooter from './PostFooter';
