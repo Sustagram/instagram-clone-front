@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import UploadAvatar from '../assets/Upload_Avatar.svg';
 import Card from '../components/Card';
-import UploadButton from '../atomics/Button/UploadButton';
 import UploadForm from '../components/UploadForm';
 
 const Container = styled.div`
@@ -42,8 +41,6 @@ const UploadPage: React.FC = () => {
   const [imgFile, setImgFile] = useState();
   const [imgBase64, setImgBase64] = useState('');
   const [isImageLoading, setLoading] = useState(false);
-
-  const clickedUpload = () => {};
 
   const handleChangeFile = (e: React.ChangeEvent<HTMLInputElement>) => {
     const reader = new FileReader();
