@@ -12,7 +12,7 @@ const Router: React.FC = () => (
       <Switch>
         <PermissionRoute exact path="/" success={MainPage} failure={() => <Redirect to="/login" />} />
         <PermissionRoute exact path="/register" success={Register} failure={Register} />
-        <PermissionRoute exact path="/login" success={Login} failure={Login} />
+        <PermissionRoute exact path="/login" success={() => <Redirect to="/" />} failure={Login} />
       </Switch>
     </BrowserRouter>
   </MeProvider>
