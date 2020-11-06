@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import Story from '../components/Story';
 import Post from '../components/Post';
@@ -49,11 +49,7 @@ const Follower = styled.div<{ positionLeft: number }>`
 `;
 
 const MainPage: React.FC = () => {
-  const [width, height] = useWindowSize();
-
-  useEffect(() => {
-    console.log('debug');
-  }, [width]);
+  const [width] = useWindowSize();
 
   return (
     <div id="main">
