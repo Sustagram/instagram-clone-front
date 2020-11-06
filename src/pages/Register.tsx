@@ -49,11 +49,11 @@ const Register: React.FC = () => {
 
   const onClickRegisterButton = async () => {
     if (
-      !email.trim()
-      || !realname.trim()
-      || !username.trim()
-      || !password.trim()
-      || !passwordConfirm.trim()
+      !email.trim() ||
+      !realname.trim() ||
+      !username.trim() ||
+      !password.trim() ||
+      !passwordConfirm.trim()
     ) {
       alert('비어있는 칸이 있습니다.');
       return;
@@ -71,7 +71,7 @@ const Register: React.FC = () => {
     }
 
     try {
-      const user = await Api.post('/api/register/', {
+      await Api.post('/api/register/', {
         email,
         realname,
         username,
