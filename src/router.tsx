@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Redirect, Switch } from 'react-router-dom';
 import MainPage from './pages/MainPage';
 import Register from './pages/Register';
 import Login from './pages/Login';
@@ -10,7 +10,7 @@ const Router: React.FC = () => (
   <MeProvider>
     <BrowserRouter>
       <Switch>
-        <Route exact path="/" component={MainPage} />
+        <PermissionRoute exact path="/" success={MainPage} failure={() => <Redirect to="/login" />} />
         <PermissionRoute exact path="/register" success={Register} failure={Register} />
         <PermissionRoute exact path="/login" success={Login} failure={Login} />
       </Switch>
