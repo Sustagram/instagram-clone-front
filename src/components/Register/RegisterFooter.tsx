@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import RegisterBox from './RegisterBox';
 
@@ -8,7 +9,7 @@ const AcountWhether = styled.p`
   font-size: 14px;
 `;
 
-const LoginLink = styled.a`
+const LoginLink = styled(Link)`
   text-decoration: none;
   color: #0095f6;
 `;
@@ -17,7 +18,7 @@ const RegisterFooter: React.FC = () => {
   return (
     <RegisterBox>
       <AcountWhether>
-        계정이 있으신가요? <LoginLink href="#">로그인</LoginLink>
+        계정이 있으신가요? <LoginLink to="/login">로그인</LoginLink>
       </AcountWhether>
     </RegisterBox>
   );
