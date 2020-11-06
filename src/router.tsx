@@ -4,14 +4,15 @@ import MainPage from './pages/MainPage';
 import Register from './pages/Register';
 import Login from './pages/Login';
 import { MeProvider } from './hooks/useMe';
+import PermissionRoute from './utils/Route/PermissionRoute';
 
 const Router: React.FC = () => (
   <MeProvider>
     <BrowserRouter>
       <Switch>
         <Route exact path="/" component={MainPage} />
-        <Route exact path="/register" component={Register} />
-        <Route exact path="/login" component={Login} />
+        <PermissionRoute exact path="/register" success={Register} failure={Register} />
+        <PermissionRoute exact path="/login" success={Login} failure={Login} />
       </Switch>
     </BrowserRouter>
   </MeProvider>
