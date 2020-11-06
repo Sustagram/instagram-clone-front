@@ -18,7 +18,7 @@ const RepleList: React.FC = () => {
   return (
     <StyledRepleList>
       <RepleAllButton>
-        <a href="#">
+        <a href="/">
           댓글 <span>100</span>개 미리보기
         </a>
       </RepleAllButton>
