@@ -52,16 +52,16 @@ const MainPage: React.FC = () => {
   const [width] = useWindowSize();
 
   return (
-    <div id="main">
+    <div>
       <header />
-      <Content id="wrap">
+      <Content>
         <StoryAndPost>
           <Story />
 
           <div>
-            <Post />
-            <Post />
-            <Post />
+            <Post likeCount={1} writer="홍길동" content="ㅇㅇㅇ" agoHour={1} />
+            <Post likeCount={1} writer="홍길동" content="ㅇㅇㅇ" agoHour={1} />
+            <Post likeCount={1} writer="홍길동" content="ㅇㅇㅇ" agoHour={1} />
           </div>
         </StoryAndPost>
 

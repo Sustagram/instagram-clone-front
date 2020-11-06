@@ -27,23 +27,28 @@ const TimeTable = styled.div`
   }
 `;
 
-const PostFooter: React.FC = () => {
+interface PostFooterProps {
+  readonly likeCount: number;
+  readonly writer: string;
+  readonly content: string;
+  readonly agoHour: number;
+}
+
+const PostFooter: React.FC<PostFooterProps> = ({ likeCount, writer, content, agoHour }) => {
   return (
     <PostFooterContainer>
       <AttributeContainer />
 
-      <LikeCount count={123} />
+      <LikeCount count={likeCount} />
 
       <Preview>
-        <PostContent writer="홍길동">
-          테스트 내용. 가나다라마바사아자차카타파하 ABCDEFG 1234
-        </PostContent>
+        <PostContent writer={writer}>{content}</PostContent>
 
         <RepleList />
       </Preview>
 
       <TimeTable>
-        <a href="#">3시간전</a>
+        <a href="/">{agoHour}시간전</a>
       </TimeTable>
 
       <RepleInput />
