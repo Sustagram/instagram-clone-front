@@ -48,14 +48,13 @@ const UploadPage: React.FC = () => {
 
     const options = {
       maxSizeMB: 2,
-      maxWidthOrHeight: 614,
+      maxWidthOrHeight: 614
     };
 
     try {
       const compressedFile = await imageCompression(file, options);
       setImgFile(compressedFile);
 
-      // resize된 이미지의 url을 받아 fileUrl에 저장
       const promise = imageCompression.getDataUrlFromFile(compressedFile);
       promise.then((result) => {
         setImgBase64(result);
