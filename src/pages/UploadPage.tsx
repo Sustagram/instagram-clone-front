@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import UploadAvatar from '../assets/Upload_Avatar.svg';
 import Card from '../components/Card';
 import UploadForm from '../components/UploadForm';
+import imageCompression from 'browser-image-compression';
 
 const Container = styled.div`
   display: flex;
@@ -42,18 +43,26 @@ const UploadPage: React.FC = () => {
   const [imgBase64, setImgBase64] = useState('');
   const [isImageLoading, setLoading] = useState(false);
 
-  const handleChangeFile = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      const base64 = reader.result;
-      if (base64) {
-        setImgBase64(base64.toString());
-      }
+  const handleChangeFile = async (e: any) => {
+    const file = e.target.files[0];
+
+    const options = {
+      maxSizeMB: 2,
+      maxWidthOrHeight: 614,
     };
-    if (e.target.files && e.target.files[0]) {
-      reader.readAsDataURL(e.target.files[0]);
-      setImgFile(e.target.files[0]);
-      setLoading(true);
+
+    try {
+      const compressedFile = await imageCompression(file, options);
+      setImgFile(compressedFile);
+
+      // resize된 이미지의 url을 받아 fileUrl에 저장
+      const promise = imageCompression.getDataUrlFromFile(compressedFile);
+      promise.then((result) => {
+        setImgBase64(result);
+        setLoading(true);
+      });
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -64,7 +73,12 @@ const UploadPage: React.FC = () => {
           <FileInputLabel htmlFor="upload-image">
             <img src={UploadAvatar} />
           </FileInputLabel>
-          <FileInput type="file" onChange={handleChangeFile} id="upload-image" />
+          <FileInput
+            type="file"
+            onChange={handleChangeFile}
+            id="upload-image"
+            accept="image/jpg,image/png,image/jpeg,image/gif"
+          />
         </Container>
       </Card>
 
