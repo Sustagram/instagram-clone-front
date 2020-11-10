@@ -41,7 +41,7 @@ const FileImage = styled.img`
 const UploadPage: React.FC = () => {
   const [imgFile, setImgFile] = useState();
   const [imgBase64, setImgBase64] = useState('');
-  const [isImageLoading, setLoading] = useState(false);
+  const [isImageLoading, setImageLoading] = useState(false);
 
   const handleChangeFile = async (e: any) => {
     const file = e.target.files[0];
@@ -58,7 +58,7 @@ const UploadPage: React.FC = () => {
       const promise = imageCompression.getDataUrlFromFile(compressedFile);
       promise.then((result) => {
         setImgBase64(result);
-        setLoading(true);
+        setImageLoading(true);
       });
     } catch (error) {
       console.log(error);
@@ -83,7 +83,7 @@ const UploadPage: React.FC = () => {
 
       <ImagePreview>{isImageLoading ? <FileImage src={imgBase64} /> : 'Not Image!'}</ImagePreview>
 
-      <UploadForm isloading={isImageLoading} />
+      <UploadForm isLoading={isImageLoading} />
     </>
   );
 };

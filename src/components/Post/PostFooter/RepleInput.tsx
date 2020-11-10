@@ -38,7 +38,7 @@ const Input = styled.input`
 
 const RepleInput: React.FC = () => {
   const [reple, setReple] = useState('');
-  const [isInputValueLoding, setLoading] = useState(false);
+  const [isInputValueLoading, setInputValueLoading] = useState(false);
 
   const onRepleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setReple(e.target.value);
@@ -57,7 +57,7 @@ const RepleInput: React.FC = () => {
       <RepleForm>
         <Input placeholder="댓글 달기..." onChange={onRepleInputChange} value={reple} />
 
-        <UploadButton loading={isInputValueLoding} className="upload" type="submit">
+        <UploadButton loading={isInputValueLoading} className="upload" type="submit">
           게시
         </UploadButton>
       </RepleForm>

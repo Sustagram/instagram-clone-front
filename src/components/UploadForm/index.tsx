@@ -31,10 +31,10 @@ const ContentInput = styled(TextareaAutosize)<{ loading: boolean }>`
 `;
 
 interface UploadProps {
-  isloading: boolean;
+  isLoading: boolean;
 }
 
-const UploadForm: React.FC<UploadProps> = ({ isloading }) => {
+const UploadForm: React.FC<UploadProps> = ({ isLoading }) => {
   const [content, setContent] = useState('');
   const [isContentLoading, setContentLoading] = useState(false);
 
@@ -54,7 +54,7 @@ const UploadForm: React.FC<UploadProps> = ({ isloading }) => {
     <Card>
       <Container>
         <ContentInput
-          loading={isloading}
+          loading={isLoading}
           id="content-input"
           placeholder="문구 입력..."
           rows={3}
