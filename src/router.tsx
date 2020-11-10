@@ -14,9 +14,7 @@ const Router: React.FC = () => (
         <Route exact path="/" component={MainPage} />
         <PermissionRoute exact path="/register" success={Register} failure={Register} />
         <PermissionRoute exact path="/login" success={Login} failure={Login} />
-        <Route exact path="/register" component={Register} />
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/upload" component={UploadPage} />
+        <PermissionRoute exact path="/upload" success={UploadPage} failure={UploadPage} />
       </Switch>
     </BrowserRouter>
   </MeProvider>
