@@ -45,11 +45,7 @@ const RepleInput: React.FC = () => {
   };
 
   useEffect(() => {
-    if (reple) {
-      setLoading(true);
-    } else {
-      setLoading(false);
-    }
+    setInputValueLoading(reple !== null);
   }, [reple]);
 
   return (
