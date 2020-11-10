@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import UploadButton from '../../../atomics/Button/UploadButton';
 
 const InputContainer = styled.section`
   border-top: 1.5px solid rgba(222, 222, 222, 0.8);
@@ -23,7 +24,7 @@ const RepleForm = styled.div`
   position: relative;
 `;
 
-const TextArea = styled.textarea`
+const Input = styled.input`
   font-size: inherit;
   line-height: 18px;
   width: 100%;
@@ -35,35 +36,26 @@ const TextArea = styled.textarea`
   color: rgb(38, 38, 38);
 `;
 
-const RepleSubmitBtn = styled.button`
-  font-size: 14px;
-  line-height: 18px;
-  box-sizing: border-box;
-  font-weight: 600;
-  text-align: center;
-  color: rgb(0, 149, 246);
-  background: none;
-  border: none;
-  display: inline;
-  padding: 0;
-  margin: 0;
-  position: relative;
-  width: 30px;
-`;
-
 const RepleInput: React.FC = () => {
+  const [reple, setReple] = useState('');
+  const [isInputValueLoading, setInputValueLoading] = useState(false);
+
+  const onRepleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setReple(e.target.value);
+  };
+
+  useEffect(() => {
+    setInputValueLoading(reple !== null);
+  }, [reple]);
+
   return (
     <InputContainer>
       <RepleForm>
-        <TextArea
-          aria-label="댓글 달기..."
-          placeholder="댓글 달기..."
-          autoComplete="off"
-          autoCorrect="off"
-        />
-        <RepleSubmitBtn className="upload" type="submit">
+        <Input placeholder="댓글 달기..." onChange={onRepleInputChange} value={reple} />
+
+        <UploadButton loading={isInputValueLoading} className="upload" type="submit">
           게시
-        </RepleSubmitBtn>
+        </UploadButton>
       </RepleForm>
     </InputContainer>
   );
