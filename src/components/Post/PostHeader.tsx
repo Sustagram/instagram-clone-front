@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Profile from '../../atomics/Profile/Profile';
 
 const PostHeaderContainer = styled.header`
   background-color: #fff;
@@ -33,7 +34,7 @@ const ImageItem = styled.img`
   user-select: none;
 `;
 
-const PosterName = styled.a` 
+const PosterName = styled.a`
   text-decoration: none;
   color: black;
   font-weight: bold;
@@ -47,9 +48,7 @@ interface PostHeaderProps {
 const PostHeader: React.FC<PostHeaderProps> = ({ profileImage, name }) => {
   return (
     <PostHeaderContainer>
-      <ProfileImage>
-        <ImageItem src={profileImage} />
-      </ProfileImage>
+      <Profile size={42} image={profileImage}></Profile>
       <PosterNameContainer>
         <PosterName>{name}</PosterName>
       </PosterNameContainer>
