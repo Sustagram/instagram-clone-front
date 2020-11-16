@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Story from '../components/Story';
 import Post from '../components/Post';
 import useWindowSize from '../hooks/useWindowSize';
+import FollowList from '../components/FollowList';
 
 const Content = styled.div`
   display: flex;
@@ -69,7 +70,7 @@ const MainPage: React.FC = () => {
           </div>
         </StoryAndPost>
 
-        <Follower positionLeft={width}>Fixed!</Follower>
+        <FollowList positionleft={width} />
       </Content>
     </div>
   );
