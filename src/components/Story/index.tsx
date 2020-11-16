@@ -5,7 +5,7 @@ const StoryCard = styled.div`
   box-sizing: border-box;
   height: 118px;
   position: relative;
-  margin: 0 auto 1.5rem auto;
+  margin: 0 auto 0 auto;
   padding: 20px 0;
   background-color: #fff;
   text-align: center;
