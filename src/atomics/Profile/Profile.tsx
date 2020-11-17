@@ -33,12 +33,12 @@ interface ProfileProps {
 }
 
 const Profile: React.FC<ProfileProps> = ({ size, image }) => {
-  let wrapperSize = size + 'px';
-  let imageSize = size - 10 + 'px';
+  const wrapperSize = `${size}px`;
+  const imageSize = `${size - 10}px`;
   return (
     <ProfileWrapper size={wrapperSize}>
       <ProfileImage size={imageSize}>
-        <ImageItem src={image}></ImageItem>
+        <ImageItem src={image} />
       </ProfileImage>
     </ProfileWrapper>
   );
