@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import Profile from '../../atomics/Profile/Profile';
 import Test from '../../assets/test.png';
 
@@ -42,9 +43,14 @@ const FollowerWrap = styled.div`
   height: 48px;
 `;
 
-const UserName = styled.a`
+const UserName = styled(Link)`
+  text-decoration: none;
+  color: #262626;
   height: 50%;
   font-size: 14px;
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 const RealName = styled.span<{ isMe: boolean }>`
@@ -104,12 +110,26 @@ const FollowList: React.FC<FollowListProps> = ({ positionleft }) => {
     }
   ]);
 
-  const followerlist = followers.map((follower) => {
+  const [isAllView, setAllView] = useState(false);
+
+  const allFollowerlist = followers.map((follower) => {
     return (
       <FollowerWrap>
         <Profile size={42} image={Test} />
         <Names>
-          <UserName>{follower.username}</UserName>
+          <UserName to={follower.username}>{follower.username}</UserName>
+          <RealName isMe={false}>{follower.realname}</RealName>
+        </Names>
+      </FollowerWrap>
+    );
+  });
+
+  const semiFollowerlist = followers.map((follower) => {
+    return (
+      <FollowerWrap>
+        <Profile size={42} image={Test} />
+        <Names>
+          <UserName to={follower.username}>{follower.username}</UserName>
           <RealName isMe={false}>{follower.realname}</RealName>
         </Names>
       </FollowerWrap>
@@ -121,11 +141,11 @@ const FollowList: React.FC<FollowListProps> = ({ positionleft }) => {
       <Myprofile>
         <Profile size={66} image={Test} />
         <Names>
-          <UserName>sadasdasd</UserName>
-          <RealName isMe>asdsa</RealName>
+          <UserName to={myinfo.username}>{myinfo.username}</UserName>
+          <RealName isMe>{myinfo.realname}</RealName>
         </Names>
       </Myprofile>
-      <div id="followersList">{followerlist}</div>
+      <div id="followersList">{isAllView ? allFollowerlist : semiFollowerlist}</div>
     </Container>
   );
 };
