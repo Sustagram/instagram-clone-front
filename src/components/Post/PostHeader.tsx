@@ -48,7 +48,7 @@ interface PostHeaderProps {
 const PostHeader: React.FC<PostHeaderProps> = ({ profileImage, name }) => {
   return (
     <PostHeaderContainer>
-      <Profile size={42} image={profileImage}></Profile>
+      <Profile size={42} image={profileImage} />
       <PosterNameContainer>
         <PosterName>{name}</PosterName>
       </PosterNameContainer>
