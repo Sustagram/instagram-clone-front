@@ -19,7 +19,7 @@ interface LikeCountProps {
 const LikeCount: React.FC<LikeCountProps> = ({ count }) => {
   return (
     <LikeCountStyle>
-      <a href="#">
+      <a href="/">
         좋아요 <span>{count}</span>개
       </a>
     </LikeCountStyle>

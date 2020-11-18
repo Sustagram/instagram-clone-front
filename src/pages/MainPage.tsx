@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Story from '../components/Story';
 import Post from '../components/Post';
 import useWindowSize from '../hooks/useWindowSize';
+import Api from '../api';
 
 const Content = styled.div`
   display: flex;
@@ -48,24 +49,52 @@ const Follower = styled.div<{ positionLeft: number }>`
   top: 60px;
 `;
 
+/* eslint-disable camelcase */
+interface PostType {
+  readonly post_id: string;
+  readonly text: string;
+  readonly media: string;
+  readonly created_at: string;
+  readonly updated_at: string;
+  readonly user_id: string;
+  readonly username: string;
+}
+
 const MainPage: React.FC = () => {
-  const [width, height] = useWindowSize();
+  const [width] = useWindowSize();
+  const [posts, setPosts] = useState<PostType[]>([]);
 
   useEffect(() => {
-    console.log('debug');
-  }, [width]);
+    Api.get('/api/post/my/').then((res) => {
+      if (res.data && res.data.success) {
+        setPosts(res.data.data);
+      }
+    });
+  }, []);
+
+  const getLastHour = (iso: string) => {
+    const now = new Date();
+    const uploadDate = new Date(iso);
+    return uploadDate.getHours() + 1 - (now.getHours() + 1);
+  };
 
   return (
-    <div id="main">
+    <div>
       <header />
-      <Content id="wrap">
+      <Content>
         <StoryAndPost>
           <Story />
 
           <div>
-            <Post />
-            <Post />
-            <Post />
+            {posts.map((post) => (
+              <Post
+                key={post.post_id}
+                likeCount={1}
+                writer={post.username}
+                content={post.text}
+                agoHour={getLastHour(post.created_at)}
+              />
+            ))}
           </div>
         </StoryAndPost>
 
