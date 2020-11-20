@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import Profile from '../../atomics/Profile/Profile';
 import Test from '../../assets/test.png';
+import Api from '../../api';
 
 const Container = styled.div<{ positionLeft: number }>`
   position: fixed;
@@ -68,8 +69,8 @@ interface FollowListProps {
 const FollowList: React.FC<FollowListProps> = ({ positionleft }) => {
   const [myinfo, setMyinfo] = useState({
     profile: '',
-    username: 'trarkc',
-    realname: '한동진'
+    username: '',
+    realname: ''
   });
 
   const [followers, setFollowers] = useState([
@@ -111,6 +112,15 @@ const FollowList: React.FC<FollowListProps> = ({ positionleft }) => {
   ]);
 
   const [isAllView, setAllView] = useState(false);
+
+  useEffect(() => {
+    Api.get('/api/me/').then((res) => {
+      if (res.data && res.data.success) {
+        console.log(res.data.data);
+        setMyinfo(res.data.data);
+      }
+    });
+  }, []);
 
   const allFollowerlist = followers.map((follower) => {
     return (
