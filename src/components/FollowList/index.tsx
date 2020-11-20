@@ -9,7 +9,7 @@ const Container = styled.div<{ positionLeft: number }>`
   position: fixed;
   width: 300px;
   height: 100vh;
-  padding: 0;
+  padding: 2rem 0 0;
   left: ${(props) => `${1126 - (1920 - props.positionLeft) * 0.5}px`};
   @media only screen and (max-width: 1000px) {
     display: none;
@@ -30,6 +30,7 @@ const Names = styled.div`
   display: flex;
   width: 200px;
   height: 28px;
+  margin-left: 0.3rem;
   flex-flow: column;
   justify-content: center;
   align-items: start;
@@ -118,8 +119,6 @@ const FollowList: React.FC<FollowListProps> = ({ positionleft }) => {
     }
   ]);
 
-  const [isAllView, setAllView] = useState(false);
-
   useEffect(() => {
     Api.get('/api/me/').then((res) => {
       if (res.data && res.data.success) {
@@ -141,18 +140,6 @@ const FollowList: React.FC<FollowListProps> = ({ positionleft }) => {
     );
   });
 
-  const semiFollowerlist = followers.map((follower) => {
-    return (
-      <FollowerWrap>
-        <Profile size={42} image={Test} />
-        <Names>
-          <UserName to={follower.username}>{follower.username}</UserName>
-          <RealName isMe={false}>{follower.realname}</RealName>
-        </Names>
-      </FollowerWrap>
-    );
-  });
-
   return (
     <Container positionLeft={positionleft}>
       <Myprofile>
@@ -162,8 +149,8 @@ const FollowList: React.FC<FollowListProps> = ({ positionleft }) => {
           <RealName isMe>{myinfo.realname}</RealName>
         </Names>
       </Myprofile>
-      <div id="followersList">{isAllView ? allFollowerlist : semiFollowerlist}</div>
       <Description>회원님의 팔로우 목록입니다.</Description>
+      <div id="followersList">{allFollowerlist}</div>
     </Container>
   );
 };
