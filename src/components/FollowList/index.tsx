@@ -62,6 +62,13 @@ const RealName = styled.span<{ isMe: boolean }>`
   font-size: ${(props) => (props.isMe ? '14px' : '12px')};
 `;
 
+const Description = styled.span`
+  color: #8e8e8e;
+  font-size: 14px;
+  padding: 4px 16px 4px 16px;
+  margin-top: 12px;
+`;
+
 interface FollowListProps {
   positionleft: number;
 }
@@ -156,6 +163,7 @@ const FollowList: React.FC<FollowListProps> = ({ positionleft }) => {
         </Names>
       </Myprofile>
       <div id="followersList">{isAllView ? allFollowerlist : semiFollowerlist}</div>
+      <Description>회원님의 팔로우 목록입니다.</Description>
     </Container>
   );
 };
