@@ -122,7 +122,6 @@ const FollowList: React.FC<FollowListProps> = ({ positionleft }) => {
   useEffect(() => {
     Api.get('/api/me/').then((res) => {
       if (res.data && res.data.success) {
-        console.log(res.data.data);
         setMyinfo(res.data.data);
       }
     });
