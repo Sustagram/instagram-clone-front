@@ -44,6 +44,7 @@ const Login: React.FC = () => {
       const { token } = user.data.data;
 
       TokenUtil.set(token);
+      window.location.reload();
     } catch (error) {
       console.log(error);
     }
