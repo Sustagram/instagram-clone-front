@@ -90,6 +90,7 @@ const MainPage: React.FC = () => {
             {posts.map((post) => (
               <Post
                 key={post.post_id}
+                id={post.post_id}
                 likeCount={1}
                 writer={post.username}
                 content={post.text}

@@ -19,13 +19,14 @@ const ImageItem = styled.img`
 `;
 
 interface PostProps {
+  readonly id: string;
   readonly likeCount: number;
   readonly writer: string;
   readonly content: string;
   readonly agoHour: number;
 }
 
-const Post: React.FC<PostProps> = ({ likeCount, writer, content, agoHour }) => {
+const Post: React.FC<PostProps> = ({ id, likeCount, writer, content, agoHour }) => {
   return (
     <Card>
       <PostHeader profileImage={Test} name={writer} />
@@ -37,7 +38,13 @@ const Post: React.FC<PostProps> = ({ likeCount, writer, content, agoHour }) => {
         <div className="next_picture_radio" />
       </ImageBox>
 
-      <PostFooter likeCount={likeCount} writer={writer} content={content} agoHour={agoHour} />
+      <PostFooter
+        id={id}
+        likeCount={likeCount}
+        writer={writer}
+        content={content}
+        agoHour={agoHour}
+      />
     </Card>
   );
 };

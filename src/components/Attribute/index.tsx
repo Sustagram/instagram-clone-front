@@ -12,10 +12,14 @@ const AttributeBoxStyle = styled.section`
   flex-direction: row;
 `;
 
-const AttributeContainer: React.FC = () => {
+interface AttributeProps {
+  readonly postId: string;
+}
+
+const AttributeContainer: React.FC<AttributeProps> = ({ postId }) => {
   return (
     <AttributeBoxStyle>
-      <Like />
+      <Like postId={postId} />
       <Comment />
       <Share />
       <Bookmark />

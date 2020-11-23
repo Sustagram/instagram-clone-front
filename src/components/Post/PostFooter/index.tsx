@@ -28,16 +28,17 @@ const TimeTable = styled.div`
 `;
 
 interface PostFooterProps {
+  readonly id: string;
   readonly likeCount: number;
   readonly writer: string;
   readonly content: string;
   readonly agoHour: number;
 }
 
-const PostFooter: React.FC<PostFooterProps> = ({ likeCount, writer, content, agoHour }) => {
+const PostFooter: React.FC<PostFooterProps> = ({ id, likeCount, writer, content, agoHour }) => {
   return (
     <PostFooterContainer>
-      <AttributeContainer />
+      <AttributeContainer postId={id} />
 
       <LikeCount count={likeCount} />
 
