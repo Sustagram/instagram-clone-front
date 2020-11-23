@@ -6,7 +6,7 @@ import Share from '../../atomics/Attributes/Share';
 import Bookmark from '../../atomics/Attributes/Bookmark';
 
 const AttributeBoxStyle = styled.section`
-  padding-left: 1rem;
+  padding-left: 0.5rem;
   padding-right: 1rem;
   display: flex;
   flex-direction: row;
