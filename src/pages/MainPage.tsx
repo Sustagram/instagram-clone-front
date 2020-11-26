@@ -97,6 +97,7 @@ const MainPage: React.FC = () => {
                 writer={post.username}
                 content={post.text}
                 agoHour={getTimeAgo(post.created_at)}
+                imageURL={post.media}
               />
             ))}
           </div>
