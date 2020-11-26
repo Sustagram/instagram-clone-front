@@ -25,6 +25,9 @@ const AttributeButtonStyle = styled.button`
   background-color: #fff;
   outline: none;
   cursor: pointer;
+  & svg {
+    transition: all 0.5s ease-out;
+  }
 `;
 
 interface AttributeProps {
