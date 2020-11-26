@@ -1,23 +1,36 @@
 import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
 import Attribute from './Attribute';
 import Api from '../../api';
+
+const Test = styled.div`
+  display: none;
+`;
 
 interface LikeProps {
   readonly postId: string;
 }
 
 const Like: React.FC<LikeProps> = ({ postId }) => {
-  const onClickLike = () => {
-    Api.post(`/api/like/${postId}`);
-  };
-
+  const [test, setTest] = useState(false);
   const [hasLike, sethasLike] = useState(false);
+
   useEffect(() => {
     Api.get(`/api/like/${postId}`).then((res) => {
       sethasLike(res.data && res.data.data);
     });
-    console.log(hasLike);
-  }, [hasLike, postId]);
+    setTest(hasLike);
+  }, [postId, test, hasLike]);
+
+  const onClickLike = () => {
+    if (hasLike) {
+      Api.delete(`/api/like/${postId}`);
+    } else {
+      Api.post(`/api/like/${postId}`);
+    }
+    setTest((t) => !t);
+    console.log(`Test: ${test}`);
+  };
 
   const cancelLike = (
     <svg aria-label="좋아요 취소" fill="#ed4956" height="24" width="24" viewBox="0 0 48 48">
@@ -32,9 +45,12 @@ const Like: React.FC<LikeProps> = ({ postId }) => {
   );
 
   return (
-    <Attribute id="like" onClick={onClickLike}>
-      {hasLike ? cancelLike : willLike}
-    </Attribute>
+    <>
+      <Test>{test}</Test>
+      <Attribute id="like" onClick={onClickLike}>
+        {test ? cancelLike : willLike}
+      </Attribute>
+    </>
   );
 };
 
