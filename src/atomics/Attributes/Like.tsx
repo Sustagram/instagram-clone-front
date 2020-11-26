@@ -29,7 +29,6 @@ const Like: React.FC<LikeProps> = ({ postId }) => {
       Api.post(`/api/like/${postId}`);
     }
     setTest((t) => !t);
-    console.log(`Test: ${test}`);
   };
 
   const cancelLike = (
