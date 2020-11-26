@@ -31,24 +31,22 @@ const ContentInput = styled(TextareaAutosize)<{ loading: boolean }>`
 `;
 
 interface UploadProps {
-  isLoading: boolean;
+  readonly isLoading: boolean;
+  readonly value: string;
+  readonly onChange: React.ChangeEventHandler<HTMLTextAreaElement>;
+  readonly onClick?: React.MouseEventHandler;
 }
 
-const UploadForm: React.FC<UploadProps> = ({ isLoading }) => {
-  const [content, setContent] = useState('');
-  const [isContentLoading, setContentLoading] = useState(false);
-
-  const onContentInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setContent(e.target.value);
-  };
+const UploadForm: React.FC<UploadProps> = ({ isLoading, value, onChange, onClick }) => {
+  const [isContentLoading, setContentLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    if (content) {
+    if (value) {
       setContentLoading(true);
     } else {
       setContentLoading(false);
     }
-  }, [content]);
+  }, [value]);
 
   return (
     <Card>
@@ -58,13 +56,15 @@ const UploadForm: React.FC<UploadProps> = ({ isLoading }) => {
           id="content-input"
           placeholder="문구 입력..."
           rows={3}
-          value={content}
-          onChange={onContentInputChange}
+          value={value}
+          onChange={onChange}
         />
 
         <Line gap="1.5rem" />
 
-        <UploadButton loading={isContentLoading}>업로드</UploadButton>
+        <UploadButton loading={isContentLoading} onClick={onClick}>
+          업로드
+        </UploadButton>
       </Container>
     </Card>
   );
