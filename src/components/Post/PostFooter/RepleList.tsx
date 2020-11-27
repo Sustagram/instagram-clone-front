@@ -14,7 +14,23 @@ const RepleAllButton = styled.div`
   }
 `;
 
-const RepleList: React.FC = () => {
+interface RepleListProps {
+  readonly list: RepleListState[];
+}
+
+interface RepleListState {
+  /* eslint-disable camelcase */
+  readonly reply_id: string;
+  readonly text: string;
+  readonly created_at: string;
+  readonly updated_at: string;
+  readonly post_id: string;
+  readonly user_id: string;
+  readonly username: string;
+  readonly realname: string;
+}
+
+const RepleList: React.FC<RepleListProps> = ({ list }) => {
   return (
     <StyledRepleList>
       <RepleAllButton>
@@ -23,9 +39,11 @@ const RepleList: React.FC = () => {
         </a>
       </RepleAllButton>
 
-      <Reple writer="홍길동">가나다라마바사</Reple>
-
-      <Reple writer="ABC">ABCDEFGASKDHAKKUWKND</Reple>
+      {list.map((item) => (
+        <Reple key={item.reply_id} writer={item.username}>
+          {item.text}
+        </Reple>
+      ))}
     </StyledRepleList>
   );
 };
