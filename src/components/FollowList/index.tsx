@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import Profile from '../../atomics/Profile/Profile';
 import Test from '../../assets/test.png';
 import Api from '../../api';
+import { useMe } from '../../hooks/useMe';
 
 const Container = styled.div<{ positionLeft: number }>`
   position: fixed;
@@ -75,11 +76,7 @@ interface FollowListProps {
 }
 
 const FollowList: React.FC<FollowListProps> = ({ positionleft }) => {
-  const [myinfo, setMyinfo] = useState({
-    profile: '',
-    username: '',
-    realname: ''
-  });
+  const myinfo = useMe();
 
   const [followers, setFollowers] = useState([
     {
@@ -119,14 +116,6 @@ const FollowList: React.FC<FollowListProps> = ({ positionleft }) => {
     }
   ]);
 
-  useEffect(() => {
-    Api.get('/api/me/').then((res) => {
-      if (res.data && res.data.success) {
-        setMyinfo(res.data.data);
-      }
-    });
-  }, []);
-
   const allFollowerlist = followers.map((follower) => {
     return (
       <FollowerWrap>
@@ -138,6 +127,18 @@ const FollowList: React.FC<FollowListProps> = ({ positionleft }) => {
       </FollowerWrap>
     );
   });
+
+  if (!myinfo) {
+    return (
+      <Container positionLeft={positionleft}>
+        <Myprofile>
+          <Names>
+            <p>로딩 중</p>
+          </Names>
+        </Myprofile>
+      </Container>
+    )
+  }
 
   return (
     <Container positionLeft={positionleft}>

@@ -17,23 +17,28 @@ const AttributeWrapperStyle = styled.div`
   }
 `;
 
-const AttributeStyle = styled.a`
+const AttributeButtonStyle = styled.button`
   width: 24px;
   height: 24px;
-  text-align: center;
-  text-decoration: none;
   color: #262626;
-  line-height: 24px;
+  border: none;
+  background-color: #fff;
+  outline: none;
+  cursor: pointer;
+  & svg {
+    transition: all 0.5s ease-out;
+  }
 `;
 
 interface AttributeProps {
   id: string;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-const Attribute: React.FC<AttributeProps> = ({ children, id }) => {
+const Attribute: React.FC<AttributeProps> = ({ children, onClick }) => {
   return (
     <AttributeWrapperStyle>
-      <AttributeStyle href="#">{children}</AttributeStyle>
+      <AttributeButtonStyle onClick={onClick}>{children}</AttributeButtonStyle>
     </AttributeWrapperStyle>
   );
 };
