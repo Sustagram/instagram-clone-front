@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import Profile from '../../atomics/Profile/Profile';
-import Test from '../../assets/test.png';
+import Test from '../../assets/default_profile.jpg';
 import Api from '../../api';
 import { useMe } from '../../hooks/useMe';
 
