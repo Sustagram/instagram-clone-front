@@ -36,24 +36,31 @@ const Input = styled.input`
   color: rgb(38, 38, 38);
 `;
 
-const RepleInput: React.FC = () => {
-  const [reple, setReple] = useState('');
+interface RepleInputProps {
+  readonly value: string;
+  readonly onChange: React.ChangeEventHandler<HTMLInputElement>;
+  readonly onClick: React.MouseEventHandler;
+  readonly onKeyPress?: React.KeyboardEventHandler;
+}
+
+const RepleInput: React.FC<RepleInputProps> = ({ value, onChange, onClick, onKeyPress }) => {
   const [isInputValueLoading, setInputValueLoading] = useState(false);
 
-  const onRepleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setReple(e.target.value);
-  };
-
   useEffect(() => {
-    setInputValueLoading(reple !== null);
-  }, [reple]);
+    setInputValueLoading(value !== null);
+  }, [value]);
 
   return (
     <InputContainer>
       <RepleForm>
-        <Input placeholder="댓글 달기..." onChange={onRepleInputChange} value={reple} />
+        <Input
+          placeholder="댓글 달기..."
+          onChange={onChange}
+          value={value}
+          onKeyPress={onKeyPress}
+        />
 
-        <UploadButton loading={isInputValueLoading} className="upload" type="submit">
+        <UploadButton loading={isInputValueLoading} type="submit" onClick={onClick}>
           게시
         </UploadButton>
       </RepleForm>
