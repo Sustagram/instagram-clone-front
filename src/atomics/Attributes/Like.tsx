@@ -9,9 +9,10 @@ const Test = styled.div`
 
 interface LikeProps {
   readonly postId: string;
+  readonly clickCallback: () => void;
 }
 
-const Like: React.FC<LikeProps> = ({ postId }) => {
+const Like: React.FC<LikeProps> = ({ postId, clickCallback }) => {
   const [test, setTest] = useState(false);
   const [hasLike, sethasLike] = useState(false);
 
@@ -22,12 +23,15 @@ const Like: React.FC<LikeProps> = ({ postId }) => {
     setTest(hasLike);
   }, [postId, test, hasLike]);
 
-  const onClickLike = () => {
+  const onClickLike = async () => {
     if (hasLike) {
-      Api.delete(`/api/like/${postId}`);
+      await Api.delete(`/api/like/${postId}`);
     } else {
-      Api.post(`/api/like/${postId}`);
+      await Api.post(`/api/like/${postId}`);
     }
+
+    clickCallback();
+
     setTest((t) => !t);
   };
 

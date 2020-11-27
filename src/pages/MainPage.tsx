@@ -94,7 +94,6 @@ const MainPage: React.FC = () => {
               <Post
                 key={post.post_id}
                 id={post.post_id}
-                likeCount={1}
                 writer={post.username}
                 content={post.text}
                 agoHour={getTimeAgo(post.created_at)}

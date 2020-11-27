@@ -14,12 +14,13 @@ const AttributeBoxStyle = styled.section`
 
 interface AttributeProps {
   readonly postId: string;
+  readonly clickCallback: () => void;
 }
 
-const AttributeContainer: React.FC<AttributeProps> = ({ postId }) => {
+const AttributeContainer: React.FC<AttributeProps> = ({ postId, clickCallback }) => {
   return (
     <AttributeBoxStyle>
-      <Like postId={postId} />
+      <Like postId={postId} clickCallback={clickCallback} />
       <Comment />
       <Share />
       <Bookmark />

@@ -30,20 +30,28 @@ const TimeTable = styled.div`
 
 interface PostFooterProps {
   readonly id: string;
-  readonly likeCount: number;
   readonly writer: string;
   readonly content: string;
   readonly agoHour: string;
 }
 
-const PostFooter: React.FC<PostFooterProps> = ({ id, likeCount, writer, content, agoHour }) => {
+const PostFooter: React.FC<PostFooterProps> = ({ id, writer, content, agoHour }) => {
   const [repleList, setRepleList] = useState([]);
   const [text, setText] = useState<string>('');
+  const [likeCount, setLikeCount] = useState<number>(0);
 
   const fetchRepleList = useCallback(() => {
     Api.get(`/api/reply/${id}`).then((res) => {
       if (res.data && res.data.success) {
         setRepleList(res.data.data);
+      }
+    });
+  }, [id]);
+
+  const fetchLikeCount = useCallback(() => {
+    Api.get(`/api/like/data/${id}`).then((res) => {
+      if (res.data && res.data.success) {
+        setLikeCount(res.data.data.length);
       }
     });
   }, [id]);
@@ -69,11 +77,12 @@ const PostFooter: React.FC<PostFooterProps> = ({ id, likeCount, writer, content,
 
   useEffect(() => {
     fetchRepleList();
-  }, [fetchRepleList, id]);
+    fetchLikeCount();
+  }, [fetchLikeCount, fetchRepleList, id]);
 
   return (
     <PostFooterContainer>
-      <AttributeContainer postId={id} />
+      <AttributeContainer postId={id} clickCallback={fetchLikeCount} />
 
       <LikeCount count={likeCount} />
 
