@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import imageCompression from 'browser-image-compression';
+import { useHistory } from 'react-router-dom';
 import UploadAvatar from '../assets/Upload_Avatar.svg';
 import Card from '../components/Card';
 import UploadForm from '../components/UploadForm';
-import imageCompression from 'browser-image-compression';
+import Api from '../api';
+import { useMe } from '../hooks/useMe';
 
 const Container = styled.div`
   display: flex;
@@ -39,9 +42,14 @@ const FileImage = styled.img`
 `;
 
 const UploadPage: React.FC = () => {
-  const [imgFile, setImgFile] = useState();
+  const me = useMe();
+  const history = useHistory();
+
+  const [content, setContent] = useState('');
+  const [, setImgFile] = useState();
   const [imgBase64, setImgBase64] = useState('');
-  const [isImageLoading, setImageLoading] = useState(false);
+  const [fileObject, setFileObject] = useState<File | undefined>(undefined);
+  const [isImageLoading, setImageLoading] = useState<boolean>(false);
 
   const handleChangeFile = async (e: any) => {
     const file = e.target.files[0];
@@ -59,9 +67,39 @@ const UploadPage: React.FC = () => {
       promise.then((result) => {
         setImgBase64(result);
         setImageLoading(true);
+        setFileObject(file);
       });
     } catch (error) {
       console.log(error);
+    }
+  };
+
+  const onSubmitClick = async () => {
+    try {
+      if (!fileObject) return;
+      if (!me) return;
+
+      const formData = new FormData();
+      formData.append('file', fileObject);
+
+      const imageResult = await Api.post('/api/upload/', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data;boundary=----WebKitFormBoundaryyrV7KO0BoCBuDbTL'
+        }
+      });
+      const url = imageResult.data.data;
+
+      const postResult = await Api.post('/api/post/', {
+        text: content,
+        media: url,
+        userId: me.user_id
+      });
+
+      if (postResult && postResult.data.success) {
+        history.push('/');
+      }
+    } catch (e) {
+      alert('오류가 발생하여 게시글을 올리지 못했습니다.');
     }
   };
 
@@ -70,7 +108,7 @@ const UploadPage: React.FC = () => {
       <Card>
         <Container>
           <FileInputLabel htmlFor="upload-image">
-            <img src={UploadAvatar} />
+            <img src={UploadAvatar} alt="Upload" />
           </FileInputLabel>
           <FileInput
             type="file"
@@ -83,7 +121,12 @@ const UploadPage: React.FC = () => {
 
       <ImagePreview>{isImageLoading ? <FileImage src={imgBase64} /> : 'Not Image!'}</ImagePreview>
 
-      <UploadForm isLoading={isImageLoading} />
+      <UploadForm
+        isLoading={isImageLoading}
+        value={content}
+        onChange={(e) => setContent(e.target.value)}
+        onClick={onSubmitClick}
+      />
     </>
   );
 };

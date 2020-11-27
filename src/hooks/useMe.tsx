@@ -1,15 +1,17 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import Api from '../api';
 
+/* eslint-disable camelcase */
+
 interface Profile {
-  readonly userId: string;
+  readonly user_id: string;
   readonly email: string;
   readonly realname: string;
   readonly username: string;
-  readonly createdAt: string;
-  readonly updatedAt: string;
-  readonly lastLogin: string;
-  readonly isSuperUser: boolean;
+  readonly created_at: string;
+  readonly updated_at: string;
+  readonly last_login: string;
+  readonly is_superUser: boolean;
 }
 
 const context = createContext<Profile | undefined>(undefined);

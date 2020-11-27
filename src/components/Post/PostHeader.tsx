@@ -14,24 +14,9 @@ const PostHeaderContainer = styled.header`
   padding: 16px;
 `;
 
-const ProfileImage = styled.div`
-  width: 32px;
-  height: 32px;
-  border-radius: 16px;
-`;
-
 const PosterNameContainer = styled.div`
   width: 100%;
   margin-left: 14px;
-`;
-
-const ImageItem = styled.img`
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
-  border-radius: 100%;
-  border: 0.5px solid rgb(142, 142, 142);
-  user-select: none;
 `;
 
 const PosterName = styled.a`

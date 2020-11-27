@@ -34,22 +34,6 @@ const StoryAndPost = styled.div`
   padding-top: 30px;
 `;
 
-const Follower = styled.div<{ positionLeft: number }>`
-  position: fixed;
-  background-color: #fff;
-  width: 300px;
-  border: 1px solid rgb(222, 222, 222);
-  text-align: center;
-  line-height: 150px;
-  height: 100vh;
-  padding: 0;
-  left: ${(props) => `${1126 - (1920 - props.positionLeft) * 0.5}px`};
-  @media only screen and (max-width: 1000px) {
-    display: none;
-  }
-  top: 60px;
-`;
-
 /* eslint-disable camelcase */
 interface PostType {
   readonly post_id: string;
@@ -73,10 +57,29 @@ const MainPage: React.FC = () => {
     });
   }, []);
 
-  const getLastHour = (iso: string) => {
-    const now = new Date();
-    const uploadDate = new Date(iso);
-    return uploadDate.getHours() + 1 - (now.getHours() + 1);
+  const getTimeAgo = (iso: string): string => {
+    const seconds = Math.floor((new Date().getTime() - new Date(iso).getTime()) / 1000);
+    let interval = seconds / 31536000;
+    if (interval > 1) {
+      return `${Math.floor(interval)}년 전`;
+    }
+    interval = seconds / 2592000;
+    if (interval > 1) {
+      return `${Math.floor(interval)}개월 전`;
+    }
+    interval = seconds / 86400;
+    if (interval > 1) {
+      return `${Math.floor(interval)}일 전`;
+    }
+    interval = seconds / 3600;
+    if (interval > 1) {
+      return `${Math.floor(interval)}시간 전`;
+    }
+    interval = seconds / 60;
+    if (interval > 1) {
+      return `${Math.floor(interval)}분 전`;
+    }
+    return `${Math.floor(seconds)}초 전`;
   };
 
   return (
@@ -94,7 +97,8 @@ const MainPage: React.FC = () => {
                 likeCount={1}
                 writer={post.username}
                 content={post.text}
-                agoHour={getLastHour(post.created_at)}
+                agoHour={getTimeAgo(post.created_at)}
+                imageURL={post.media}
               />
             ))}
           </div>
