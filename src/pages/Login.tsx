@@ -67,6 +67,7 @@ const Login: React.FC = () => {
             type="password"
             placeholder="비밀번호"
             onChange={onPasswordInputChange}
+            onKeyPress={(e) => e.key === 'Enter' && onClickLoginButton()}
             value={password}
             required
           />
