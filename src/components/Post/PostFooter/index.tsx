@@ -31,7 +31,7 @@ interface PostFooterProps {
   readonly likeCount: number;
   readonly writer: string;
   readonly content: string;
-  readonly agoHour: number;
+  readonly agoHour: string;
 }
 
 const PostFooter: React.FC<PostFooterProps> = ({ likeCount, writer, content, agoHour }) => {
@@ -48,7 +48,7 @@ const PostFooter: React.FC<PostFooterProps> = ({ likeCount, writer, content, ago
       </Preview>
 
       <TimeTable>
-        <a href="/">{agoHour}시간전</a>
+        <a href="/">{agoHour}</a>
       </TimeTable>
 
       <RepleInput />

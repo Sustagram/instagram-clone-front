@@ -22,10 +22,11 @@ interface PostProps {
   readonly likeCount: number;
   readonly writer: string;
   readonly content: string;
-  readonly agoHour: number;
+  readonly agoHour: string;
+  readonly imageURL: string;
 }
 
-const Post: React.FC<PostProps> = ({ likeCount, writer, content, agoHour }) => {
+const Post: React.FC<PostProps> = ({ likeCount, writer, content, agoHour, imageURL }) => {
   return (
     <Card>
       <PostHeader profileImage={Test} name={writer} />
@@ -33,7 +34,7 @@ const Post: React.FC<PostProps> = ({ likeCount, writer, content, agoHour }) => {
       <OptionButton />
 
       <ImageBox>
-        <ImageItem src={Test} />
+        <ImageItem src={imageURL} />
         <div className="next_picture_radio" />
       </ImageBox>
 
