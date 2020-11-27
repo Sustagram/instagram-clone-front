@@ -75,26 +75,32 @@ const UploadPage: React.FC = () => {
   };
 
   const onSubmitClick = async () => {
-    if (!fileObject) return;
-    if (!me) return;
+    try {
+      if (!fileObject) return;
+      if (!me) return;
 
-    const formData = new FormData();
-    formData.append('file', fileObject);
+      const formData = new FormData();
+      formData.append('file', fileObject);
 
-    const imageResult = await Api.post('/api/upload/', formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data;boundary=----WebKitFormBoundaryyrV7KO0BoCBuDbTL'
+      const imageResult = await Api.post('/api/upload/', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data;boundary=----WebKitFormBoundaryyrV7KO0BoCBuDbTL'
+        }
+      });
+      const url = imageResult.data.data;
+
+      const postResult = await Api.post('/api/post/', {
+        text: content,
+        media: url,
+        userId: me.user_id
+      });
+
+      if (postResult && postResult.data.success) {
+        history.push('/');
       }
-    });
-    const url = imageResult.data.data;
-
-    await Api.post('/api/post/', {
-      text: content,
-      media: url,
-      userId: me.user_id
-    });
-
-    history.push('/');
+    } catch (e) {
+      alert('오류가 발생하여 게시글을 올리지 못했습니다.');
+    }
   };
 
   return (
