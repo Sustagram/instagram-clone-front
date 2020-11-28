@@ -56,7 +56,7 @@ const UserName = styled(Link)`
   }
 `;
 
-const RealName = styled.span<{ isMe: boolean }>`
+const RealName = styled.span<{ isMe?: boolean }>`
   margin-top: 4px;
   height: 50%;
   color: rgb(182, 182, 182);
