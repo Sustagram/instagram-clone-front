@@ -71,6 +71,14 @@ const Description = styled.span`
   margin-top: 12px;
 `;
 
+/* eslint-disable camelcase */
+interface FollowType {
+  readonly user_id: string;
+  readonly following_id: string;
+  readonly following_username: string;
+  readonly following_realname: string;
+}
+
 interface FollowListProps {
   positionleft: number;
 }
@@ -78,51 +86,27 @@ interface FollowListProps {
 const FollowList: React.FC<FollowListProps> = ({ positionleft }) => {
   const myinfo = useMe();
 
-  const [followers, setFollowers] = useState([
-    {
-      profile: '',
-      username: 'arkc1009',
-      realname: '둥진한'
-    },
-    {
-      profile: '',
-      username: 'tjsdn811',
-      realname: '하선우'
-    },
-    {
-      profile: '',
-      username: 'rjsdn811',
-      realname: '하건우'
-    },
-    {
-      profile: '',
-      username: 'rjsdn811',
-      realname: '하건우'
-    },
-    {
-      profile: '',
-      username: 'rjsdn811',
-      realname: '하건우'
-    },
-    {
-      profile: '',
-      username: 'rjsdn811',
-      realname: '하건우'
-    },
-    {
-      profile: '',
-      username: 'rjsdn811',
-      realname: '하건우'
-    }
-  ]);
+  const [follows, setFollows] = useState<FollowType[]>([]);
 
-  const allFollowerlist = followers.map((follower) => {
+  useEffect(() => {
+    const loadFollows = async () => {
+      try {
+        const res = await Api.get('/api/follow/');
+        setFollows(res.data.data);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    loadFollows();
+  }, []);
+
+  const allFollowerlist = follows.map((follow) => {
     return (
       <FollowerWrap>
-        <Profile size={42} image={Test} />
+        <Profile size={42} image={Test} key={follow.following_id} />
         <Names>
-          <UserName to={follower.username}>{follower.username}</UserName>
-          <RealName isMe={false}>{follower.realname}</RealName>
+          <UserName to={follow.following_username}>{follow.following_username}</UserName>
+          <RealName>{follow.following_realname}</RealName>
         </Names>
       </FollowerWrap>
     );
@@ -137,7 +121,22 @@ const FollowList: React.FC<FollowListProps> = ({ positionleft }) => {
           </Names>
         </Myprofile>
       </Container>
-    )
+    );
+  }
+
+  if (!follows) {
+    return (
+      <Container positionLeft={positionleft}>
+        <Myprofile>
+          <Profile size={66} image={Test} />
+          <Names>
+            <UserName to={myinfo.username}>{myinfo.username}</UserName>
+            <RealName isMe>{myinfo.realname}</RealName>
+          </Names>
+        </Myprofile>
+        <Description>현재 회원님이 팔로우한 사람이 없습니다.</Description>
+      </Container>
+    );
   }
 
   return (
