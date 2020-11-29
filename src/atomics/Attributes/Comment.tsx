@@ -2,8 +2,12 @@ import React from 'react';
 import Attribute from './Attribute';
 
 const Comment: React.FC = () => {
+  const onClickComment = () => {
+    alert('구현 준비중인 기능입니다.');
+  };
+
   return (
-    <Attribute id="comment">
+    <Attribute id="comment" onClick={onClickComment}>
       <svg aria-label="댓글달기" fill="#262626" height="24" width="24" viewBox="0 0 48 48">
         <path
           clipRule="evenodd"
