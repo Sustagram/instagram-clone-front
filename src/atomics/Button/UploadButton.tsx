@@ -17,6 +17,7 @@ const UploadButton = styled.button<{ loading: boolean }>`
   position: relative;
   width: 42px;
   cursor: pointer;
+  outline: none;
 `;
 
 export default UploadButton;
