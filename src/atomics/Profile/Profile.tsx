@@ -28,13 +28,14 @@ const ImageItem = styled.img`
 `;
 
 interface ProfileProps {
-  size: number;
+  wrapSize: number;
+  imgSize: number;
   image: string;
 }
 
-const Profile: React.FC<ProfileProps> = ({ size, image }) => {
-  const wrapperSize = `${size}px`;
-  const imageSize = `${size - 10}px`;
+const Profile: React.FC<ProfileProps> = ({ wrapSize, imgSize, image }) => {
+  const wrapperSize = `${wrapSize}px`;
+  const imageSize = `${imgSize}px`;
   return (
     <ProfileWrapper size={wrapperSize}>
       <ProfileImage size={imageSize}>

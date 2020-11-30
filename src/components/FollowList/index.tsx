@@ -103,7 +103,7 @@ const FollowList: React.FC<FollowListProps> = ({ positionleft }) => {
   const allFollowerlist = follows.map((follow) => {
     return (
       <FollowerWrap>
-        <Profile size={42} image={Test} key={follow.following_id} />
+        <Profile wrapSize={42} imgSize={32} image={Test} key={follow.following_id} />
         <Names>
           <UserName to={follow.following_username}>{follow.following_username}</UserName>
           <RealName>{follow.following_realname}</RealName>
@@ -128,7 +128,7 @@ const FollowList: React.FC<FollowListProps> = ({ positionleft }) => {
     return (
       <Container positionLeft={positionleft}>
         <Myprofile>
-          <Profile size={66} image={Test} />
+          <Profile wrapSize={66} imgSize={56} image={Test} />
           <Names>
             <UserName to={myinfo.username}>{myinfo.username}</UserName>
             <RealName isMe>{myinfo.realname}</RealName>
@@ -142,7 +142,7 @@ const FollowList: React.FC<FollowListProps> = ({ positionleft }) => {
   return (
     <Container positionLeft={positionleft}>
       <Myprofile>
-        <Profile size={66} image={Test} />
+        <Profile wrapSize={66} imgSize={56} image={Test} />
         <Names>
           <UserName to={myinfo.username}>{myinfo.username}</UserName>
           <RealName isMe>{myinfo.realname}</RealName>
