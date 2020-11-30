@@ -5,6 +5,10 @@ import Post from '../components/Post';
 import useWindowSize from '../hooks/useWindowSize';
 import Api from '../api';
 import FollowList from '../components/FollowList';
+import Header from '../components/Header';
+
+const Wrap = styled.div`
+`;
 
 const Content = styled.div`
   display: flex;
@@ -12,9 +16,9 @@ const Content = styled.div`
   position: relative;
   max-width: 935px;
   margin: 0 auto;
-  padding-top: 30px;
+  padding-top: 60px;
   @media only screen and (min-width: 640px) {
-    padding-top: 30px;
+    padding-top: 60px;
   }
   @media only screen and (max-width: 1000px) {
     justify-content: center;
@@ -83,8 +87,9 @@ const MainPage: React.FC = () => {
   };
 
   return (
-    <div>
-      <header />
+    <Wrap>
+      <Header />
+
       <Content>
         <StoryAndPost>
           <Story />
@@ -105,7 +110,7 @@ const MainPage: React.FC = () => {
 
         <FollowList positionleft={width} />
       </Content>
-    </div>
+    </Wrap>
   );
 };
 

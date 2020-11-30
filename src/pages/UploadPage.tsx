@@ -7,8 +7,13 @@ import Card from '../components/Card';
 import UploadForm from '../components/UploadForm';
 import Api from '../api';
 import { useMe } from '../hooks/useMe';
+import Header from '../components/Header';
 
-const Container = styled.div`
+const Wrap = styled.div`
+  padding-top: 3rem;
+`;
+
+const InputContainer = styled.div`
   display: flex;
   flex-flow: column;
   align-items: center;
@@ -104,9 +109,10 @@ const UploadPage: React.FC = () => {
   };
 
   return (
-    <>
+    <Wrap>
+      <Header />
       <Card>
-        <Container>
+        <InputContainer>
           <FileInputLabel htmlFor="upload-image">
             <img src={UploadAvatar} alt="Upload" />
           </FileInputLabel>
@@ -116,7 +122,7 @@ const UploadPage: React.FC = () => {
             id="upload-image"
             accept="image/jpg,image/png,image/jpeg,image/gif"
           />
-        </Container>
+        </InputContainer>
       </Card>
 
       <ImagePreview>{isImageLoading ? <FileImage src={imgBase64} /> : 'Not Image!'}</ImagePreview>
@@ -127,7 +133,7 @@ const UploadPage: React.FC = () => {
         onChange={(e) => setContent(e.target.value)}
         onClick={onSubmitClick}
       />
-    </>
+    </Wrap>
   );
 };
 
