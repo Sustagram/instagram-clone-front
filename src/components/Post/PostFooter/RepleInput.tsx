@@ -47,7 +47,7 @@ const RepleInput: React.FC<RepleInputProps> = ({ value, onChange, onClick, onKey
   const [isInputValueLoading, setInputValueLoading] = useState(false);
 
   useEffect(() => {
-    setInputValueLoading(value !== null);
+    setInputValueLoading(value.length > 0);
   }, [value]);
 
   return (
