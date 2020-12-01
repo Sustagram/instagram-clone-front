@@ -49,7 +49,7 @@ const Header: React.FC = () => {
       <HeaderContent>
         <div>
           <TitleWrap to="/">
-            <RegisterTitle>SustaGram</RegisterTitle>
+            <RegisterTitle>Sustagram</RegisterTitle>
           </TitleWrap>
         </div>
         <Menu>
